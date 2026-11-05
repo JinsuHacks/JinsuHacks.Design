@@ -1,0 +1,110 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/layout/Header.astro';
+import Footer from '@/components/layout/Footer.astro';
+import ServiceCard from '@/components/services/ServiceCard.astro';
+import ProcessStep from '@/components/services/ProcessStep.astro';
+import servicesData from '@/data/services.json';
+---
+
+<BaseLayout title="Services" description="Brand identity, product design, web development, motion, design systems and illustration—with the decisions and details considered from brief to build.">
+  <slot name="header">
+    <Header />
+  </slot>
+
+  <!-- Hero -->
+  <section class="hero" style="min-height: 60vh; min-height: 60dvh;">
+    <div class="mesh-gradient" aria-hidden="true"></div>
+    <div class="metro-grid metro-grid--animated" aria-hidden="true"></div>
+    <div class="hero__content">
+      <div class="hero__badge" data-animate="fade-in-up">
+        <span aria-hidden="true">🎯</span>
+        <span>Services, from identity through implementation</span>
+      </div>
+      <h1 class="hero__title" data-animate="fade-in-up" style="animation-delay: 150ms;">
+        The right details, <span class="gradient-text">in the right system</span>
+      </h1>
+      <p class="hero__description" data-animate="fade-in-up" style="animation-delay: 300ms; max-width: 700px;">
+        Choose a focused piece of work or bring us in across the full process. Either way, we connect the brief, the design decisions and the final build.
+      </p>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section class="section" aria-labelledby="services-title">
+    <div class="container">
+      <header class="section-header" data-animate="fade-in-up">
+        <span class="section-header__badge">Our Expertise</span>
+        <h2 id="services-title" class="section-header__title">
+          Practical design work, <span class="gradient-text">from first brief to final details</span>
+        </h2>
+        <p class="section-header__description">
+          Each discipline can stand alone; the strongest results come when the pieces share the same logic.
+        </p>
+      </header>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {servicesData.services.map((service, index) => (
+          <ServiceCard
+            id={service.id}
+            title={service.title}
+            description={service.description}
+            features={service.features}
+            icon={service.icon}
+            color={service.color}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="section bg-bg-alt" aria-labelledby="process-title">
+    <div class="container">
+      <header class="section-header" data-animate="fade-in-up">
+        <span class="section-header__badge">How We Work</span>
+        <h2 id="process-title" class="section-header__title">
+          A clear process, <span class="gradient-text">with room to think</span>
+        </h2>
+        <p class="section-header__description">
+          We keep decisions visible, review the work at useful points and make trade-offs explicit as the project takes shape.
+        </p>
+      </header>
+
+      <div class="process" data-animate="fade-in-up" style="animation-delay: 150ms;">
+        {servicesData.process.map(step => (
+          <ProcessStep
+            number={step.number}
+            title={step.title}
+            description={step.description}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section" style="position: relative; overflow: hidden;">
+    <div class="mesh-gradient" aria-hidden="true"></div>
+    <div class="container">
+      <div class="glass glass--gradient-border" style="padding: clamp(3rem, 6vw, 5rem); text-align: center; max-width: 800px; margin: 0 auto;" data-animate="scale-in-spring">
+        <h2 style="font-size: var(--text-4xl); font-weight: var(--font-extrabold); margin-bottom: var(--space-4);">
+          Have a brief—or just <span class="gradient-text">a knot to untangle</span>?
+        </h2>
+        <p style="font-size: var(--text-lg); color: var(--color-text-muted); margin-bottom: var(--space-8); max-width: 500px; margin-left: auto; margin-right: auto;">
+          Tell us what you’re making, where you’re stuck, and what a good outcome would look like. We’ll take it from there.
+        </p>
+        <a href="/contact" class="button button--primary button--xl" style="display: inline-flex;">
+          Start a Conversation
+          <svg class="button__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <slot name="footer">
+    <Footer />
+  </slot>
+</BaseLayout>

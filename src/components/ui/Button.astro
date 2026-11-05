@@ -1,0 +1,57 @@
+---
+interface Props {
+  children: any;
+  href?: string;
+  variant?: 'primary' | 'secondary' | 'accent' | 'ghost';
+  size?: 'sm' | 'md' | 'lg' | 'xl' | 'icon';
+  disabled?: boolean;
+  type?: 'button' | 'submit' | 'reset';
+  class?: string;
+  onClick?: () => void;
+  'aria-label'?: string;
+}
+
+const {
+  children,
+  href,
+  variant = 'primary',
+  size = 'md',
+  disabled = false,
+  type = 'button',
+  class: className = '',
+  onClick,
+  'aria-label': ariaLabel
+} = Astro.props;
+
+const classes = `button button--${variant} button--${size} ${className}`.trim();
+const isLink = !!href;
+---
+
+{isLink ? (
+  <a
+    href={href}
+    class={classes}
+    disabled={disabled}
+    aria-disabled={disabled}
+    aria-label={ariaLabel}
+    data-button
+  >
+    <slot />
+  </a>
+) : (
+  <button
+    type={type}
+    class={classes}
+    disabled={disabled}
+    aria-disabled={disabled}
+    aria-label={ariaLabel}
+    data-button
+    on:click={onClick}
+  >
+    <slot />
+  </button>
+)}
+
+<style>
+  /* Button styles are in components.css */
+</style>

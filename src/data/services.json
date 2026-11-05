@@ -1,0 +1,169 @@
+{
+  "services": [
+    {
+      "id": "brand-identity",
+      "title": "Brand Identity",
+      "description": "A clear identity starts with a clear position. We develop the visual language—logo, type, color and rules—that lets a brand stay recognizable across real touchpoints.",
+      "icon": "brand",
+      "color": "teal",
+      "features": [
+        "Logo Design & Systems",
+        "Brand Strategy",
+        "Visual Identity",
+        "Brand Guidelines",
+        "Typography Systems",
+        "Color Palettes"
+      ],
+      "process": [
+        "Discovery & Research",
+        "Strategy & Positioning",
+        "Design Exploration",
+        "Refinement & Polish",
+        "Delivery & Guidelines"
+      ],
+      "image": "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=640&h=420&fit=crop"
+    },
+    {
+      "id": "digital-product",
+      "title": "Digital Product Design",
+      "description": "We map the important tasks, content and edge cases, then turn them into flows and interfaces people can learn quickly. Prototypes help test the hard parts before they become code.",
+      "icon": "product",
+      "color": "orange",
+      "features": [
+        "UX Research & Strategy",
+        "Wireframing & Prototyping",
+        "UI Design Systems",
+        "Interaction Design",
+        "Usability Testing",
+        "Design Handoff"
+      ],
+      "process": [
+        "User Research",
+        "Information Architecture",
+        "Wireframes & Flows",
+        "High-Fidelity Design",
+        "Prototype & Test",
+        "Developer Handoff"
+      ],
+      "image": "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=640&h=420&fit=crop"
+    },
+    {
+      "id": "web-development",
+      "title": "Web Development",
+      "description": "Responsive sites and web applications built around the content and the people maintaining it. We pay attention to loading speed, accessibility and a clean handoff—not just the launch screenshot.",
+      "icon": "code",
+      "color": "purple",
+      "features": [
+        "Static Sites (Astro, Next.js)",
+        "React/Vue Applications",
+        "E-commerce Solutions",
+        "CMS Integration",
+        "Performance Optimization",
+        "Accessibility (WCAG)"
+      ],
+      "process": [
+        "Technical Planning",
+        "Architecture & Setup",
+        "Component Development",
+        "Integration & Testing",
+        "Launch & Monitor",
+        "Ongoing Support"
+      ],
+      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=640&h=420&fit=crop"
+    },
+    {
+      "id": "motion-design",
+      "title": "Motion & Interaction",
+      "description": "Motion should explain a change, confirm an action or help someone keep their place. We design the timing, easing and states, with reduced-motion behavior included from the start.",
+      "icon": "motion",
+      "color": "magenta",
+      "features": [
+        "Motion Design Systems",
+        "Micro-interactions",
+        "Page Transitions",
+        "Lottie Animations",
+        "Prototyping (Framer, ProtoPie)",
+        "Developer Handoff"
+      ],
+      "process": [
+        "Motion Audit",
+        "Principles & Guidelines",
+        "Key Animation Design",
+        "Implementation Specs",
+        "QA & Refinement",
+        "Documentation"
+      ],
+      "image": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=640&h=420&fit=crop"
+    },
+    {
+      "id": "design-systems",
+      "title": "Design Systems",
+      "description": "A useful system makes common decisions easier. We audit existing UI, define tokens and components, then document when and how each pattern should be used.",
+      "icon": "system",
+      "color": "cyan",
+      "features": [
+        "Design Tokens",
+        "Component Library",
+        "Pattern Library",
+        "Documentation Site",
+        "Governance Model",
+        "Adoption Strategy"
+      ],
+      "process": [
+        "Audit & Inventory",
+        "Token Architecture",
+        "Component Design",
+        "Documentation",
+        "Team Training",
+        "Maintenance Plan"
+      ],
+      "image": "https://images.unsplash.com/photo-1551434678-e076c223a692?w=640&h=420&fit=crop"
+    },
+    {
+      "id": "illustration",
+      "title": "Custom Illustration",
+      "description": "Custom illustration and iconography made for the places a brand needs them: product states, editorial moments and campaign work. A consistent style keeps the assets feeling related.",
+      "icon": "illustration",
+      "color": "lime",
+      "features": [
+        "Brand Illustrations",
+        "Icon Systems",
+        "Editorial Illustration",
+        "Data Visualization",
+        "Mascot Design",
+        "Animation-Ready Assets"
+      ],
+      "process": [
+        "Style Exploration",
+        "Concept Development",
+        "Refinement",
+        "Production",
+        "Asset Delivery",
+        "Usage Guidelines"
+      ],
+      "image": "https://images.unsplash.com/photo-1558655146-d09347e92766?w=640&h=420&fit=crop"
+    }
+  ],
+  "process": [
+    {
+      "number": "01",
+      "title": "Discover",
+      "description": "We review the product, audience and constraints, then talk with the people closest to the problem. The aim is to agree on what needs solving before choosing a visual direction."
+    },
+    {
+      "number": "02",
+      "title": "Define",
+      "description": "We turn what we learned into a focused brief: priority users, key tasks, scope, and the decisions the work needs to support."
+    },
+    {
+      "number": "03",
+      "title": "Design",
+      "description": "We explore a few deliberate directions, test flows and prototypes, then refine the chosen route with regular reviews."
+    },
+    {
+      "number": "04",
+      "title": "Deliver",
+      "description": "We prepare production-ready files, specs and documentation, review the build with the team, and address details that surface in implementation."
+    }
+  ]
+}

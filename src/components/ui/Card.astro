@@ -1,0 +1,70 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  category?: string;
+  image?: {
+    src: string;
+    alt: string;
+  };
+  href?: string;
+  tags?: string[];
+  meta?: string;
+  variant?: 'default' | 'glass' | 'gradient-border';
+  class?: string;
+}
+
+const {
+  title,
+  description,
+  category,
+  image,
+  href,
+  tags = [],
+  meta,
+  variant = 'default',
+  class: className = ''
+} = Astro.props;
+
+const classes = `card card--${variant} ${className}`.trim();
+const isLink = !!href;
+const Tag = isLink ? 'a' : 'article';
+---
+
+<{Tag} href={isLink ? href : undefined} class={classes} {...(isLink ? { 'data-card': '' } : {})}>
+  {image && (
+    <div class="card__image-wrapper">
+      <img
+        src={image.src}
+        alt={image.alt}
+        class="card__image"
+        loading="lazy"
+      />
+    </div>
+  )}
+
+  <div class="card__content">
+    {category && (
+      <span class="card__category">{category}</span>
+    )}
+    <h3 class="card__title">{title}</h3>
+    {description && <p class="card__description">{description}</p>}
+
+    {(tags.length > 0 || meta) && (
+      <div class="card__footer">
+        {tags.length > 0 && (
+          <div class="card__tags">
+            {tags.map(tag => <span class="card__tag">{tag}</span>)}
+          </div>
+        )}
+        {meta && <span class="card__meta">{meta}</span>}
+      </div>
+    )}
+  </div>
+</{Tag}>
+
+<style>
+  .card__image-wrapper {
+    overflow: hidden;
+  }
+</style>

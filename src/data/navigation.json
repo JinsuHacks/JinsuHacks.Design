@@ -1,0 +1,33 @@
+{
+  "logo": {
+    "text": "JinsuHacks.Design",
+    "mark": "JH"
+  },
+  "navItems": [
+    {
+      "label": "Services",
+      "href": "/services",
+      "active": false
+    },
+    {
+      "label": "Capabilities",
+      "href": "/portfolio",
+      "active": false
+    },
+    {
+      "label": "About",
+      "href": "/about",
+      "active": false
+    },
+    {
+      "label": "Contact",
+      "href": "/contact",
+      "active": false
+    }
+  ],
+  "cta": {
+    "label": "Start a Project",
+    "href": "/contact",
+    "variant": "primary"
+  }
+}

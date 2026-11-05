@@ -1,0 +1,58 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  label?: string;
+  href?: string;
+  aspect?: 'square' | 'landscape' | 'portrait' | 'wide' | 'tall';
+  color?: 'teal' | 'orange' | 'purple' | 'cyan' | 'lime' | 'magenta';
+  image?: string;
+  class?: string;
+}
+
+const {
+  title,
+  description,
+  label,
+  href,
+  aspect = 'square',
+  color = 'teal',
+  image,
+  class: className = ''
+} = Astro.props;
+
+const classes = `grid-block grid-block--${aspect} grid-block--${color} ${image ? 'grid-block--image' : ''} ${className}`.trim();
+const isLink = !!href;
+const Tag = isLink ? 'a' : 'div';
+
+function getGridIcon(label: string) {
+  const icons: Record<string, string> = {
+    brand: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5',
+    product: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z',
+    code: 'M10 18a4 4 0 0 0 4-4 4 4 0 0 0-4-4 4 4 0 0 0-4 4 4 4 0 0 0 4 4zM14 2a4 4 0 0 1 0 8 4 4 0 0 1 0-8z',
+    motion: 'M8 12a4 4 0 1 0 8 0 4 4 0 0 0-8 0zM20 12a4 4 0 1 0-8 0 4 4 0 0 0 8 0zM4 12a4 4 0 1 0 8 0 4 4 0 0 0-8 0z',
+    system: 'M6 6h12v12H6zM10 10h4v4h-4zM16 16H8v-4h8z',
+    illustration: 'M21 12V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7M3 3v18h18',
+    strategy: 'M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11',
+    craft: 'M12 19l7-7 3 3-7 7-3-3zM18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5zM2 2l7.586 7.586M19 19l-7.586-7.586',
+    collaboration: 'M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 0 0 0 8h2a4 4 0 0 0 0-8h-2zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75',
+    impact: 'M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6'
+  };
+  return icons[label] || icons.brand;
+}
+---
+
+<Tag href={isLink ? href : undefined} class={classes} {...(isLink ? { 'data-grid-block': '' } : {})} {...(image ? { style: `background-image: url(${image})` } : {})}>
+  <div class="grid-block__content">
+    {label && (
+      <div class="grid-block__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d={getGridIcon(label)} />
+        </svg>
+      </div>
+    )}
+    {label && <span class="grid-block__label">{label}</span>}
+    <h3 class="grid-block__title">{title}</h3>
+    {description && <p class="grid-block__description">{description}</p>}
+  </div>
+</Tag>

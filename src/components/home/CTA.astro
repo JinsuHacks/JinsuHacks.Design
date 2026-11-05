@@ -1,0 +1,37 @@
+---
+import GeoShape from '@/components/ui/GeoShape.astro';
+import Button from '@/components/ui/Button.astro';
+---
+
+<section class="section" aria-labelledby="cta-title" style="position: relative; overflow: hidden;">
+  <div class="geo-shapes" aria-hidden="true">
+    <GeoShape type="circle" color="teal" size="xl" animation="float-organic" style="top: -5%; left: -5%; opacity: 0.1;" />
+    <GeoShape type="square" color="orange" size="lg" animation="float-slow" style="bottom: -5%; right: -5%; opacity: 0.08;" />
+    <GeoShape type="diamond" color="purple" size="md" animation="float" style="top: 50%; left: 5%; opacity: 0.06;" />
+    <GeoShape type="blob" color="cyan" size="lg" animation="drift" style="bottom: 20%; right: 10%; opacity: 0.05;" />
+  </div>
+
+  <div class="mesh-gradient" aria-hidden="true"></div>
+
+  <div class="container">
+    <div class="glass glass--gradient-border" style="padding: clamp(3rem, 6vw, 5rem); text-align: center; max-width: 800px; margin: 0 auto;" data-animate="scale-in-spring">
+      <h2 id="cta-title" style="font-size: var(--text-4xl); font-weight: var(--font-extrabold); margin-bottom: var(--space-4);">
+        Have a brief—or just <span class="gradient-text">a knot to untangle</span>?
+      </h2>
+      <p style="font-size: var(--text-lg); color: var(--color-text-muted); margin-bottom: var(--space-8); max-width: 500px; margin-left: auto; margin-right: auto;">
+        Tell us what you’re making, where you’re stuck, and what a good outcome would look like. We’ll start with a useful conversation, not a sales script.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <Button variant="primary" size="xl" href="/contact">
+          Talk through a project
+          <svg class="button__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7"></path>
+          </svg>
+        </Button>
+        <Button variant="ghost" size="lg" href="/portfolio">
+          See what we can make
+        </Button>
+      </div>
+    </div>
+  </div>
+</section>

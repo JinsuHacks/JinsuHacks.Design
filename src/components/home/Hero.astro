@@ -1,0 +1,250 @@
+---
+import GeoShape from '@/components/ui/GeoShape.astro';
+---
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-bubbles" aria-hidden="true">
+    {Array.from({ length: 5 }).map(() => (
+      <div class="hero-bubble">
+        {Array.from({ length: 5 }).map(() => <span />)}
+      </div>
+    ))}
+  </div>
+
+  <div class="geo-shapes" aria-hidden="true">
+    <GeoShape type="circle" color="teal" size="xl" animation="float-organic" style="top: 10%; left: 5%; opacity: 0.15;" />
+    <GeoShape type="square" color="orange" size="lg" animation="float-slow" style="top: 20%; right: 8%; opacity: 0.12;" />
+    <GeoShape type="diamond" color="purple" size="md" animation="float" style="bottom: 30%; left: 3%; opacity: 0.1;" />
+    <GeoShape type="blob" color="cyan" size="lg" animation="drift" style="bottom: 15%; right: 15%; opacity: 0.08;" />
+    <GeoShape type="circle" color="magenta" size="sm" animation="pulse" style="top: 40%; left: 50%; opacity: 0.1;" />
+    <GeoShape type="square" color="lime" size="md" animation="breathe" style="top: 60%; right: 20%; opacity: 0.08;" />
+  </div>
+
+  <div class="mesh-gradient mesh-gradient--animated" aria-hidden="true"></div>
+
+  <div class="metro-grid metro-grid--animated" aria-hidden="true"></div>
+
+  <div class="hero__content">
+    <div class="hero__badge" data-animate="fade-in-up">
+      <span class="hero__badge-dot" aria-hidden="true"></span>
+      <span>Independent design & development studio</span>
+    </div>
+
+    <h1 id="hero-title" class="hero__title" data-animate="fade-in-up" style="animation-delay: 150ms;">
+      Interfaces with a point of view. <span class="gradient">Systems with a job to do.</span>
+    </h1>
+
+    <p class="hero__description" data-animate="fade-in-up" style="animation-delay: 300ms;">
+      We help teams shape brand systems, product interfaces and websites—from the first rough flows to the details developers ship.
+    </p>
+
+    <div class="hero__actions" data-animate="fade-in-up" style="animation-delay: 450ms;">
+      <a href="/contact" class="button button--primary button--lg">
+        Start a Project
+        <svg class="button__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M5 12h14M12 5l7 7-7 7"></path>
+        </svg>
+      </a>
+      <a href="/portfolio" class="button button--secondary button--lg">
+        Explore capabilities
+      </a>
+    </div>
+
+    <div class="hero__scroll-indicator" data-animate="fade-in" style="animation-delay: 600ms;">
+      <span>Scroll to explore</span>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <path d="M12 5v14M19 12l-7 7-7-7"></path>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    background-color: #eaf8f6;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 14%;
+    right: clamp(2rem, 7vw, 7rem);
+    bottom: 14%;
+    width: clamp(14rem, 31vw, 27rem);
+    background-image:
+      linear-gradient(180deg, rgba(250, 250, 250, .04), rgba(250, 250, 250, .12)),
+      url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1000&q=80&fit=crop');
+    background-size: cover;
+    background-position: center;
+    border: 1px solid rgba(255, 255, 255, .72);
+    border-radius: clamp(1.5rem, 4vw, 3rem);
+    box-shadow: 0 24px 70px rgba(49, 66, 104, .16), inset 0 1px 0 rgba(255, 255, 255, .8);
+    opacity: .68;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero-bubbles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero-bubble {
+    --bubble-size: clamp(3.5rem, 7vw, 6.5rem);
+    position: absolute;
+    top: 18%;
+    left: 8%;
+    width: var(--bubble-size);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 25%, rgba(255,255,255,.92), rgba(0,212,170,.28) 24%, rgba(6,182,212,.12) 48%, rgba(168,85,247,.25) 70%, rgba(236,72,153,.48));
+    box-shadow: inset -10px -12px 24px rgba(6, 182, 212, .22), inset 8px 8px 20px rgba(255,255,255,.7), 0 16px 48px rgba(6,182,212,.12);
+    opacity: .58;
+    filter: saturate(1.2);
+    animation: metro-bubble-float 9s ease-in-out infinite;
+  }
+
+  .hero-bubble:nth-child(2) { --bubble-size: clamp(2.5rem, 5vw, 4.5rem); top: 20%; left: auto; right: 12%; animation-delay: -3s; }
+  .hero-bubble:nth-child(3) { --bubble-size: clamp(2rem, 3.5vw, 3.5rem); top: auto; bottom: 18%; left: 18%; animation-delay: -5s; }
+  .hero-bubble:nth-child(4) { --bubble-size: clamp(3rem, 6vw, 5.5rem); top: auto; bottom: 16%; left: auto; right: 20%; animation-delay: -6s; }
+  .hero-bubble:nth-child(5) { --bubble-size: clamp(1.5rem, 2.5vw, 2.5rem); top: 36%; left: auto; right: 30%; animation-delay: -1s; }
+
+  .hero-bubble span {
+    position: absolute;
+    inset: 9%;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-left-color: rgba(15, 180, 255, .72);
+    filter: blur(2px);
+  }
+
+  .hero-bubble span:nth-child(2) { inset: 13%; border-left-color: transparent; border-right-color: rgba(255, 68, 132, .62); transform: rotate(28deg); }
+  .hero-bubble span:nth-child(3) { inset: 18%; border-left-color: transparent; border-top-color: rgba(253, 224, 71, .7); transform: rotate(-24deg); }
+  .hero-bubble span:nth-child(4) { inset: 24%; border-left-color: rgba(255, 68, 132, .6); filter: blur(4px); transform: rotate(35deg); }
+  .hero-bubble span:nth-child(5) { inset: 8%; border-left-color: transparent; border-bottom-color: rgba(255,255,255,.8); filter: blur(2px); transform: rotate(-30deg); }
+
+  @keyframes metro-bubble-float {
+    0%, 100% { transform: translate3d(0, -12px, 0) rotate(-5deg); }
+    50% { transform: translate3d(0, 16px, 0) rotate(6deg); }
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 1;
+    width: min(100% - 2 * var(--section-padding-x), 1280px);
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 var(--section-padding-x);
+    text-align: left;
+  }
+
+  .hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-full);
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+    color: var(--color-text);
+    margin-bottom: var(--space-6);
+  }
+
+  .hero__badge-dot {
+    width: .55rem;
+    height: .55rem;
+    border-radius: 50%;
+    background: var(--metro-teal);
+    box-shadow: 0 0 0 4px rgba(0, 212, 170, .14);
+  }
+
+  .hero__title {
+    max-width: 13ch;
+    font-size: clamp(3rem, 6vw, 5.75rem);
+    font-weight: var(--font-extrabold);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight);
+    margin-bottom: var(--space-6);
+  }
+
+  .hero__title .gradient {
+    background: var(--gradient-text-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero__description {
+    font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+    color: var(--color-text-muted);
+    max-width: 52ch;
+    margin: 0 0 var(--space-8);
+  }
+
+  .hero__actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .hero__scroll-indicator {
+    position: absolute;
+    bottom: var(--space-8);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--color-text-muted);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+  }
+
+  .hero__scroll-indicator svg {
+    animation: float 2s ease-in-out infinite;
+  }
+
+  @media (max-width: 640px) {
+    .hero::before {
+      top: auto;
+      right: -2rem;
+      bottom: 8%;
+      width: 58vw;
+      height: 36%;
+      opacity: .32;
+    }
+
+    .hero-bubble { opacity: .35; }
+
+    .hero__title {
+      max-width: 12ch;
+      font-size: clamp(2.75rem, 12vw, 4rem);
+    }
+
+    .hero__description {
+      font-size: var(--text-lg);
+    }
+
+    .hero__content { padding-bottom: 3rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-bubble { animation: none; }
+  }
+</style>

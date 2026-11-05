@@ -1,0 +1,15 @@
+# JinsuHacks.Design - Robots.txt
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://jinsuhacks.design/sitemap-index.xml
+
+# Crawl-delay
+Crawl-delay: 10
+
+# Disallow private/admin areas
+Disallow: /api/
+Disallow: /_astro/
+Disallow: /node_modules/
+Disallow: /.git/

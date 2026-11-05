@@ -1,0 +1,32 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  icon: string;
+  color: string;
+}
+
+const { title, description, icon, color } = Astro.props;
+
+function getValueIcon(icon: string) {
+  const icons: Record<string, string> = {
+    strategy: 'M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11',
+    craft: 'M12 19l7-7 3 3-7 7-3-3zM18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5zM2 2l7.586 7.586M19 19l-7.586-7.586',
+    collaboration: 'M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 0 0 0 8h2a4 4 0 0 0 0-8h-2zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75',
+    impact: 'M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6'
+  };
+  return icons[icon] || icons.strategy;
+}
+---
+
+<article class="card card--glass" data-animate="fade-in-up">
+  <div class="card__content" style="padding: var(--space-8); text-align: center;">
+    <div style="width: 64px; height: 64px; background: var(--gradient-1); border-radius: var(--radius-xl); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-6); color: var(--color-text-inverse);">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <path d={getValueIcon(icon)} />
+      </svg>
+    </div>
+    <h3 style="font-size: var(--text-xl); font-weight: var(--font-bold); margin-bottom: var(--space-3);">{title}</h3>
+    <p style="color: var(--color-text-muted); margin: 0;">{description}</p>
+  </div>
+</article>

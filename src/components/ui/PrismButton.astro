@@ -1,0 +1,85 @@
+---
+interface Props {
+  href: string;
+  label: string;
+  count?: string;
+  ariaLabel?: string;
+}
+
+const { href, label, count, ariaLabel } = Astro.props;
+---
+
+<a class="pf-btn" href={href} aria-label={ariaLabel}>
+  <svg class="pf-btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" />
+  </svg>
+  <span>{label}</span>
+  {count && <span class="pf-btn__count" aria-hidden="true">{count}</span>}
+</a>
+
+<style>
+  .pf-btn {
+    --pf-lime: #a3e635;
+    --pf-lime-edge: #84cc16;
+    --pf-lime-hover: #bef264;
+    --pf-lime-ink: #17220b;
+    --pf-ink: #171717;
+    --pf-canvas: #fff;
+    --pf-magenta: #ec4899;
+    --pf-violet: #a855f7;
+    --pf-cyan: #06b6d4;
+    --pf-teal: #00d4aa;
+
+    position: relative;
+    isolation: isolate;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 44px;
+    padding: 0 18px;
+    border: 1px solid var(--pf-lime-edge);
+    border-radius: 10px;
+    background: var(--pf-lime);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.55), 0 8px 18px -10px rgba(124,226,91,.65), 0 2px 4px rgba(11,11,15,.08);
+    color: var(--pf-lime-ink);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .01em;
+    line-height: 1.2;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: transform 140ms cubic-bezier(.2,.7,.2,1), box-shadow 200ms cubic-bezier(.2,.7,.2,1), background 140ms cubic-bezier(.2,.7,.2,1);
+  }
+
+  .pf-btn::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    z-index: -1;
+    border-radius: 14px;
+    background: linear-gradient(90deg, var(--pf-magenta), var(--pf-violet), var(--pf-cyan), var(--pf-teal), var(--pf-lime));
+    opacity: 0;
+    filter: blur(8px);
+    transition: opacity 220ms cubic-bezier(.2,.7,.2,1);
+  }
+
+  .pf-btn:hover {
+    transform: translateY(-1px);
+    background: var(--pf-lime-hover);
+    color: var(--pf-lime-ink);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.55), 0 10px 24px -10px rgba(124,226,91,.72), 0 2px 4px rgba(11,11,15,.08);
+  }
+
+  .pf-btn:hover::before { opacity: .7; }
+  .pf-btn:active { transform: translateY(1px); }
+  .pf-btn:focus-visible { outline: none; box-shadow: inset 0 1px 0 rgba(255,255,255,.4), 0 0 0 3px rgba(63,199,232,.4); }
+  .pf-btn__icon { flex: none; width: 16px; height: 16px; }
+  .pf-btn__count { padding: 3px 6px 2px; border-radius: 4px; background: var(--pf-ink); color: var(--pf-canvas); font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; line-height: 1; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pf-btn, .pf-btn::before { transition: none; }
+    .pf-btn:hover, .pf-btn:active { transform: none; }
+  }
+</style>

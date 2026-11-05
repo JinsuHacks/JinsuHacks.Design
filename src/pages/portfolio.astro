@@ -1,0 +1,60 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/layout/Header.astro';
+import Footer from '@/components/layout/Footer.astro';
+import CapabilitiesShowcase from '@/components/home/CapabilitiesShowcase.astro';
+---
+
+<BaseLayout title="Capabilities" description="Explore the brand, product, web and design-system work JinsuHacks can plan, design and build.">
+  <slot name="header">
+    <Header />
+  </slot>
+
+  <!-- Hero -->
+  <section class="hero" style="min-height: 60vh; min-height: 60dvh;">
+    <div class="mesh-gradient" aria-hidden="true"></div>
+    <div class="metro-grid metro-grid--animated" aria-hidden="true"></div>
+    <div class="hero__content">
+      <div class="hero__badge" data-animate="fade-in-up">
+        <span aria-hidden="true">🏆</span>
+        <span>What we can make</span>
+      </div>
+      <h1 class="hero__title" data-animate="fade-in-up" style="animation-delay: 150ms;">
+        Brand, product and web <span class="gradient-text">built with purpose</span>
+      </h1>
+      <p class="hero__description" data-animate="fade-in-up" style="animation-delay: 300ms; max-width: 700px;">
+        Explore the kinds of work we can take on—from a first identity direction to the interface details and implementation that make a product usable.
+      </p>
+    </div>
+  </section>
+
+  <CapabilitiesShowcase />
+
+  <!-- Stats -->
+  <section class="section bg-bg-alt" aria-label="Design priorities">
+    <div class="container">
+      <div class="stats" data-animate="fade-in-up">
+        <div class="stat">
+          <div class="stat__value">Clear</div>
+          <div class="stat__label">Information hierarchy</div>
+        </div>
+        <div class="stat">
+          <div class="stat__value">Consistent</div>
+          <div class="stat__label">Reusable patterns</div>
+        </div>
+        <div class="stat">
+          <div class="stat__value">Considered</div>
+          <div class="stat__label">States and interactions</div>
+        </div>
+        <div class="stat">
+          <div class="stat__value">Buildable</div>
+          <div class="stat__label">Designed for implementation</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <slot name="footer">
+    <Footer />
+  </slot>
+</BaseLayout>

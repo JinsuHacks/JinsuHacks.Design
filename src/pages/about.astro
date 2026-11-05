@@ -1,0 +1,133 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/layout/Header.astro';
+import Footer from '@/components/layout/Footer.astro';
+import ValueCard from '@/components/about/ValueCard.astro';
+---
+
+<BaseLayout title="About" description="How JinsuHacks.Design approaches brand identity, product interfaces and the details that make a design system useful.">
+  <slot name="header">
+    <Header />
+  </slot>
+
+  <section class="hero" style="min-height: 60vh; min-height: 60dvh;">
+    <div class="mesh-gradient" aria-hidden="true"></div>
+    <div class="metro-grid metro-grid--animated" aria-hidden="true"></div>
+    <div class="hero__content">
+      <div class="hero__badge" data-animate="fade-in-up">
+        <span aria-hidden="true">✳</span>
+        <span>How we approach the work</span>
+      </div>
+      <h1 class="hero__title" data-animate="fade-in-up" style="animation-delay: 150ms;">
+        Design should be <span class="gradient-text">clear, useful and distinct.</span>
+      </h1>
+      <p class="hero__description" data-animate="fade-in-up" style="animation-delay: 300ms; max-width: 700px;">
+        We work across identity, digital products and websites. The goal is a coherent system that helps people understand what something is and what to do next.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="mission-title">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div data-animate="fade-in-up">
+          <span class="section-header__badge">Our approach</span>
+          <h2 id="mission-title" style="font-size: var(--text-4xl); font-weight: var(--font-extrabold); margin: var(--space-4) 0 var(--space-6); line-height: var(--leading-tight);">
+            Start with the problem. <span class="gradient-text">Make the design earn its place.</span>
+          </h2>
+          <p style="font-size: var(--text-lg); color: var(--color-text-muted); margin-bottom: var(--space-6);">
+            Before choosing a visual direction, we look at the product, its audience and the constraints around it. That gives the design something to respond to—and keeps decisions from becoming taste alone.
+          </p>
+          <p style="font-size: var(--text-base); color: var(--color-text-muted); margin-bottom: var(--space-6);">
+            Then work through the details: information hierarchy, typography, component behavior, content and implementation. Those choices should reinforce one another, whether the deliverable is a brand guide, a product flow or a live website.
+          </p>
+          <a href="/contact" class="button button--primary button--lg">
+            Talk through a project
+            <svg class="button__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+
+        <div data-animate="fade-in-up" style="animation-delay: 150ms;">
+          <div style="aspect-ratio: 4/3; max-height: 360px; border-radius: var(--radius-3xl); overflow: hidden; background: var(--gradient-mesh);">
+            <img
+              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=720&h=540&fit=crop"
+              alt="Design team reviewing work together"
+              style="width: 100%; height: 100%; object-fit: cover; opacity: 0.9;"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-bg-alt" aria-labelledby="values-title">
+    <div class="container">
+      <header class="section-header" data-animate="fade-in-up">
+        <span class="section-header__badge">Working principles</span>
+        <h2 id="values-title" class="section-header__title">
+          The checks that <span class="gradient-text">keep the work honest</span>
+        </h2>
+        <p class="section-header__description">Practical ways to keep a project focused, usable and consistent.</p>
+      </header>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <ValueCard title="Context first" description="Understand the audience, the task and the constraints before settling on a direction." icon="strategy" color="teal" />
+        <ValueCard title="Details matter" description="Typography, spacing, states and content need to hold together—not just the hero screen." icon="craft" color="orange" />
+        <ValueCard title="Work in the open" description="Share work early, make trade-offs visible and involve the people who will build or maintain it." icon="collaboration" color="purple" />
+        <ValueCard title="Check the result" description="Use prototypes to catch uncertainty early, then review the shipped experience against the intent." icon="impact" color="magenta" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="process-title">
+    <div class="container">
+      <header class="section-header" data-animate="fade-in-up">
+        <span class="section-header__badge">How the work moves</span>
+        <h2 id="process-title" class="section-header__title">
+          From open questions <span class="gradient-text">to considered decisions</span>
+        </h2>
+        <p class="section-header__description">The process flexes to fit the brief, but the useful parts stay the same: understand, make, test and refine.</p>
+      </header>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6" style="max-width: 1100px; margin: 0 auto;">
+        <article class="card card--glass" style="padding: var(--space-6);">
+          <span class="section-header__badge">01 / Understand</span>
+          <h3>Get specific about the brief</h3>
+          <p>Who is this for? What do they need to do? What is fixed, and what can change?</p>
+        </article>
+        <article class="card card--glass" style="padding: var(--space-6);">
+          <span class="section-header__badge">02 / Explore</span>
+          <h3>Make options tangible</h3>
+          <p>Use sketches, flows and prototypes to compare directions before details become expensive to change.</p>
+        </article>
+        <article class="card card--glass" style="padding: var(--space-6);">
+          <span class="section-header__badge">03 / Refine</span>
+          <h3>Carry intent into the build</h3>
+          <p>Check responsive behavior, content, accessibility and edge states—not only the polished first view.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="position: relative; overflow: hidden;">
+    <div class="mesh-gradient" aria-hidden="true"></div>
+    <div class="container">
+      <div class="glass glass--gradient-border" style="padding: clamp(3rem, 6vw, 5rem); text-align: center; max-width: 800px; margin: 0 auto;" data-animate="scale-in-spring">
+        <h2 style="font-size: var(--text-4xl); font-weight: var(--font-extrabold); margin-bottom: var(--space-4);">
+          Have something <span class="gradient-text">worth working through</span>?
+        </h2>
+        <p style="font-size: var(--text-lg); color: var(--color-text-muted); margin-bottom: var(--space-8); max-width: 500px; margin-left: auto; margin-right: auto;">
+          Bring the rough brief, the existing product or the question your team can’t quite answer yet.
+        </p>
+        <a href="/portfolio" class="button button--secondary button--lg">Explore capabilities</a>
+      </div>
+    </div>
+  </section>
+
+  <slot name="footer">
+    <Footer />
+  </slot>
+</BaseLayout>

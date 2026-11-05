@@ -1,0 +1,292 @@
+---
+import navData from '@/data/navigation.json';
+---
+
+<header class="site-header" data-header>
+  <div class="site-header-inner container">
+    <a href="/" class="site-logo" aria-label="JinsuHacks.Design - Home">
+      <span class="site-logo-mark" aria-hidden="true">{navData.logo.mark}</span>
+      <span>{navData.logo.text}</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Main navigation" data-nav>
+      <ul class="site-nav-list">
+        {navData.navItems.map(item => (
+          <li>
+            <a
+              href={item.href}
+              class={`nav-link ${item.active ? 'nav-link--active' : ''}`}
+              aria-current={item.active ? 'page' : undefined}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="site-header-actions">
+      <a
+        href={navData.cta.href}
+        class={`button button--${navData.cta.variant}`}
+      >
+        {navData.cta.label}
+      </a>
+
+      <button
+        class="mobile-nav-toggle"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+        data-nav-toggle
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <nav id="mobile-nav" class="site-nav mobile-nav" aria-label="Mobile navigation" data-mobile-nav>
+    <ul class="site-nav-list">
+      {navData.navItems.map(item => (
+        <li>
+          <a
+            href={item.href}
+            class={`nav-link ${item.active ? 'nav-link--active' : ''}`}
+            aria-current={item.active ? 'page' : undefined}
+            data-nav-link
+          >
+            {item.label}
+          </a>
+        </li>
+      ))}
+      <li>
+        <a href={navData.cta.href} class="button button--primary" style="width: 100%; justify-content: center;">
+          {navData.cta.label}
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<script>
+  // Header scroll effect
+  const header = document.querySelector('[data-header]');
+  let lastScroll = 0;
+
+  const handleScroll = () => {
+    const currentScroll = window.scrollY;
+    if (currentScroll > 20) {
+      header?.classList.add('scrolled');
+    } else {
+      header?.classList.remove('scrolled');
+    }
+    lastScroll = currentScroll;
+  };
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
+
+  // Mobile navigation toggle
+  const navToggle = document.querySelector('[data-nav-toggle]');
+  const mobileNav = document.querySelector('[data-mobile-nav]');
+  const navLinks = document.querySelectorAll('[data-nav-link]');
+
+  const toggleMobileNav = () => {
+    const isOpen = mobileNav?.classList.toggle('open');
+    navToggle?.setAttribute('aria-expanded', String(isOpen));
+
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  };
+
+  navToggle?.addEventListener('click', toggleMobileNav);
+
+  // Close mobile nav on link click
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileNav?.classList.remove('open');
+      navToggle?.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Close mobile nav on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileNav?.classList.contains('open')) {
+      toggleMobileNav();
+    }
+  });
+</script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    background: rgba(250, 250, 250, 0.8);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid var(--color-border);
+    transition: background 250ms ease-out, box-shadow 250ms ease-out;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .site-header {
+      background: rgba(5, 5, 5, 0.8);
+      border-bottom-color: var(--color-border);
+    }
+  }
+
+  .site-header.scrolled {
+    box-shadow: var(--shadow-md);
+  }
+
+  .site-header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+
+  .site-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: var(--font-bold);
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .site-logo-mark {
+    width: 36px;
+    height: 36px;
+    background: var(--gradient-mesh);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-inverse);
+    font-weight: var(--font-black);
+    font-size: var(--text-sm);
+  }
+
+  .site-nav-list {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    list-style: none;
+  }
+
+  .nav-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+    color: var(--color-text-muted);
+    border-radius: var(--radius-md);
+    transition: color 150ms ease-out, background 150ms ease-out;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--color-primary);
+    transform: translateX(-50%);
+    transition: width 250ms ease-out;
+  }
+
+  .nav-link:hover {
+    color: var(--color-primary);
+    background: var(--color-bg-alt);
+  }
+
+  .nav-link:hover::after {
+    width: 80%;
+  }
+
+  .nav-link--active {
+    color: var(--color-primary);
+  }
+
+  .nav-link--active::after {
+    width: 80%;
+  }
+
+  .site-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .mobile-nav-toggle {
+    display: none;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+  }
+
+  @media (max-width: 768px) {
+    .mobile-nav-toggle {
+      display: flex;
+    }
+  }
+
+  /* Mobile Navigation */
+  .mobile-nav {
+    position: fixed;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    padding: 1rem;
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 350ms ease-out, opacity 350ms ease-out, visibility 350ms;
+  }
+
+  .mobile-nav.open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .mobile-nav .site-nav-list {
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .mobile-nav .nav-link {
+    width: 100%;
+    justify-content: center;
+    padding: 0.75rem 1rem;
+  }
+
+  .mobile-nav .button {
+    width: 100%;
+    justify-content: center;
+  }
+</style>

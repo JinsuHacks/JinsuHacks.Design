@@ -1,0 +1,21 @@
+---
+interface Props {
+  children: any;
+  variant?: 'default' | 'strong' | 'dark' | 'gradient-border';
+  class?: string;
+  as?: 'div' | 'section' | 'article' | 'aside';
+}
+
+const {
+  children,
+  variant = 'default',
+  class: className = '',
+  as: Tag = 'div'
+} = Astro.props;
+
+const classes = `glass glass--${variant} ${className}`.trim();
+---
+
+<Tag class={classes}>
+  <slot />
+</Tag>

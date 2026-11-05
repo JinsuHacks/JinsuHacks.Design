@@ -1,0 +1,72 @@
+---
+interface Props {
+  year: string;
+  title: string;
+  description: string;
+  side?: 'left' | 'right';
+}
+
+const { year, title, description, side = 'left' } = Astro.props;
+---
+
+<article class="timeline-item" data-side={side} data-animate="fade-in-up">
+  <div class="timeline-marker" aria-hidden="true">
+    <span>{year}</span>
+  </div>
+  <div class="timeline-content">
+    <h3 style="font-size: var(--text-lg); font-weight: var(--font-semibold); margin-bottom: var(--space-2);">{title}</h3>
+    <p style="color: var(--color-text-muted); margin: 0;">{description}</p>
+  </div>
+</article>
+
+<style>
+  .timeline-item {
+    display: flex;
+    gap: var(--space-6);
+    position: relative;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 36px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--gradient-1);
+  }
+
+  .timeline-item:last-child::before {
+    display: none;
+  }
+
+  .timeline-marker {
+    flex-shrink: 0;
+    width: 72px;
+    text-align: right;
+    padding-right: var(--space-4);
+  }
+
+  .timeline-marker span {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: var(--font-bold);
+    color: var(--color-primary);
+  }
+
+  .timeline-content {
+    flex: 1;
+    padding-top: var(--space-2);
+  }
+
+  @media (max-width: 640px) {
+    .timeline-item::before {
+      left: 18px;
+    }
+
+    .timeline-marker {
+      width: 54px;
+    }
+  }
+</style>

@@ -1,0 +1,15 @@
+---
+interface Props {
+  number: string;
+  title: string;
+  description: string;
+}
+
+const { number, title, description } = Astro.props;
+---
+
+<article class="process__step" data-animate="fade-in-up">
+  <div class="process__number" aria-hidden="true">{number}</div>
+  <h3 class="process__title">{title}</h3>
+  <p class="process__description">{description}</p>
+</article>

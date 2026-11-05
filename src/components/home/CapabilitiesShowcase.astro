@@ -1,0 +1,202 @@
+---
+interface Props {
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
+const headingId = compact ? 'home-capabilities-title' : 'portfolio-capabilities-title';
+
+const capabilities = [
+  {
+    title: 'Brand identity systems',
+    description: 'A clear visual language, from logo and typography through the rules that keep it consistent.',
+    href: '/services#brand-identity',
+    type: 'brand',
+    outputs: ['Identity', 'Art direction', 'Guidelines'],
+  },
+  {
+    title: 'SaaS & product interfaces',
+    description: 'Useful flows, considered states and interfaces that make complex work easier to follow.',
+    href: '/services#digital-product',
+    type: 'product',
+    outputs: ['UX flows', 'UI design', 'Prototypes'],
+  },
+  {
+    title: 'Marketing websites',
+    description: 'Responsive, fast pages with a strong content hierarchy and a path to the next action.',
+    href: '/services#web-development',
+    type: 'web',
+    outputs: ['Art direction', 'Responsive UI', 'Build'],
+  },
+  {
+    title: 'Design systems',
+    description: 'Reusable components, tokens and usage guidance that help teams ship with fewer one-offs.',
+    href: '/services#design-systems',
+    type: 'system',
+    outputs: ['Tokens', 'Components', 'Documentation'],
+  },
+  {
+    title: 'Motion & interaction',
+    description: 'Small, purposeful transitions and feedback that make interfaces feel clear and responsive.',
+    href: '/services#motion-design',
+    type: 'motion',
+    outputs: ['Motion rules', 'Micro-interactions', 'Specs'],
+  },
+  {
+    title: 'E-commerce storefronts',
+    description: 'Product discovery and checkout experiences built around useful details and fewer hurdles.',
+    href: '/services#digital-product',
+    type: 'commerce',
+    outputs: ['Product pages', 'Shopping flows', 'Checkout'],
+  },
+];
+---
+
+<section class={`section capabilities-showcase ${compact ? 'capabilities-showcase--compact' : ''}`} aria-labelledby={headingId}>
+  <div class="container">
+    <header class="section-header" data-animate="fade-in-up">
+      <span class="section-header__badge">{compact ? 'Capabilities' : 'What we can make'}</span>
+      <h2 id={headingId} class="section-header__title">
+        From first sketch to <span class="gradient-text">shipped experience</span>
+      </h2>
+      <p class="section-header__description">
+        A look at the brand systems, product interfaces, websites and design details we can help you plan, design and build.
+      </p>
+    </header>
+
+    <div class="capabilities-grid">
+      {capabilities.map((item, index) => (
+        <a class={`capability-card capability-card--${item.type}`} href={item.href} data-animate="fade-in-up" style={`--capability-delay: ${index * 70}ms`}>
+          <div class="capability-card__visual" aria-hidden="true">
+            {item.type === 'brand' && (
+              <div class="capability-brand-art">
+                <span class="capability-brand-art__mark">Aa</span>
+                <span class="capability-brand-art__swatches"><i></i><i></i><i></i><i></i></span>
+                <span class="capability-brand-art__rule"></span>
+              </div>
+            )}
+            {item.type === 'product' && (
+              <div class="capability-product-art">
+                <span class="capability-product-art__rail"></span>
+                <span class="capability-product-art__top"></span>
+                <span class="capability-product-art__chart"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+                <span class="capability-product-art__side"></span>
+              </div>
+            )}
+            {item.type === 'web' && (
+              <div class="capability-web-art">
+                <span class="capability-web-art__chrome"><i></i><i></i><i></i></span>
+                <span class="capability-web-art__hero"></span>
+                <span class="capability-web-art__copy"></span>
+                <span class="capability-web-art__tiles"><i></i><i></i><i></i></span>
+              </div>
+            )}
+            {item.type === 'system' && (
+              <div class="capability-system-art">
+                <span class="capability-system-art__token"></span>
+                <span class="capability-system-art__row"><i></i><i></i><i></i></span>
+                <span class="capability-system-art__row"><i></i><i></i><i></i></span>
+                <span class="capability-system-art__row"><i></i><i></i><i></i></span>
+              </div>
+            )}
+            {item.type === 'motion' && (
+              <div class="capability-motion-art"><i></i><i></i><i></i><span></span></div>
+            )}
+            {item.type === 'commerce' && (
+              <div class="capability-commerce-art">
+                <span class="capability-commerce-art__image"></span>
+                <span class="capability-commerce-art__details"><i></i><i></i><i></i><b></b></span>
+              </div>
+            )}
+            <span class="capability-card__index">0{index + 1}</span>
+          </div>
+          <div class="capability-card__content">
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+            <ul aria-label={`${item.title} deliverables`}>
+              {item.outputs.map(output => <li>{output}</li>)}
+            </ul>
+            <span class="capability-card__link">Explore service <span aria-hidden="true">↗</span></span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .capabilities-showcase { position: relative; overflow: hidden; }
+  .capabilities-showcase--compact { background: var(--color-bg-alt); }
+  .capabilities-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1rem, 2vw, 1.5rem); }
+  .capability-card { --cap-accent: var(--metro-teal); position: relative; display: flex; min-width: 0; flex-direction: column; overflow: hidden; border: 1px solid rgba(23,23,23,.08); border-radius: var(--radius-2xl); background: rgba(255,255,255,.82); color: var(--color-text); text-decoration: none; box-shadow: 0 12px 34px rgba(27,44,66,.06); transition: transform 220ms var(--ease-out), box-shadow 220ms var(--ease-out), border-color 220ms var(--ease-out); }
+  .capability-card:hover { transform: translateY(-5px); border-color: color-mix(in srgb, var(--cap-accent) 42%, white); box-shadow: 0 22px 48px rgba(27,44,66,.12); }
+  .capability-card:focus-visible { outline: 3px solid var(--cap-accent); outline-offset: 3px; }
+  .capability-card--product { --cap-accent: var(--metro-cyan); }
+  .capability-card--web { --cap-accent: var(--metro-purple); }
+  .capability-card--system { --cap-accent: var(--metro-orange); }
+  .capability-card--motion { --cap-accent: var(--metro-magenta); }
+  .capability-card--commerce { --cap-accent: var(--metro-lime-dark); }
+  .capability-card__visual { position: relative; display: grid; min-height: 180px; place-items: center; overflow: hidden; background: radial-gradient(circle at 18% 18%, color-mix(in srgb, var(--cap-accent) 28%, white), transparent 50%), linear-gradient(135deg, #f8fbfb, #eff4f4); }
+  .capability-card__visual::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(23,23,23,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(23,23,23,.035) 1px, transparent 1px); background-size: 24px 24px; mask-image: linear-gradient(135deg, black, transparent 82%); }
+  .capability-card__index { position: absolute; top: 14px; right: 16px; color: rgba(23,23,23,.48); font-family: var(--font-mono); font-size: 11px; letter-spacing: .12em; }
+  .capability-card__content { display: flex; flex: 1; flex-direction: column; align-items: flex-start; padding: 1.35rem 1.4rem 1.5rem; }
+  .capability-card__content h3 { margin: 0 0 .55rem; font-size: var(--text-xl); }
+  .capability-card__content p { margin: 0 0 1rem; color: var(--color-text-muted); font-size: var(--text-sm); line-height: 1.6; }
+  .capability-card__content ul { display: flex; flex-wrap: wrap; gap: .4rem; margin: auto 0 1.1rem; padding: 0; list-style: none; }
+  .capability-card__content li { padding: .3rem .55rem; border: 1px solid rgba(23,23,23,.08); border-radius: 999px; background: rgba(255,255,255,.72); color: var(--color-text-muted); font-size: 11px; }
+  .capability-card__link { display: inline-flex; gap: .4rem; align-items: center; color: #267c71; font-size: var(--text-sm); font-weight: var(--font-bold); }
+  .capability-card__link span { transition: transform 180ms ease-out; }
+  .capability-card:hover .capability-card__link span { transform: translate(2px,-2px); }
+
+  .capability-brand-art { position: relative; display: flex; width: 68%; height: 118px; align-items: center; justify-content: space-between; padding: 1.2rem; border: 1px solid rgba(255,255,255,.7); border-radius: 18px; background: rgba(255,255,255,.72); box-shadow: 0 14px 36px rgba(23,23,23,.08); transform: rotate(-3deg); }
+  .capability-brand-art__mark { color: #17241f; font-family: Georgia,serif; font-size: 50px; letter-spacing: -.08em; }
+  .capability-brand-art__swatches { display: flex; gap: 5px; }
+  .capability-brand-art__swatches i { width: 14px; height: 48px; border-radius: 8px; background: var(--metro-teal); }
+  .capability-brand-art__swatches i:nth-child(2) { background: var(--metro-orange); }
+  .capability-brand-art__swatches i:nth-child(3) { background: var(--metro-purple); }
+  .capability-brand-art__swatches i:nth-child(4) { background: var(--metro-yellow); }
+  .capability-brand-art__rule { position: absolute; right: 1.2rem; bottom: 1rem; left: 1.2rem; height: 1px; background: rgba(23,23,23,.1); }
+
+  .capability-product-art { position: relative; display: grid; width: 68%; height: 112px; grid-template-columns: 24px 1fr 28%; gap: 8px; padding: 10px; border: 1px solid rgba(255,255,255,.8); border-radius: 14px; background: #fff; box-shadow: 0 14px 36px rgba(23,23,23,.1); transform: rotate(2deg); }
+  .capability-product-art__rail { grid-row: span 2; border-radius: 7px; background: linear-gradient(180deg,var(--metro-cyan),var(--metro-teal)); }
+  .capability-product-art__top { height: 14px; border-radius: 6px; background: #edf2f2; }
+  .capability-product-art__chart { display: flex; height: 56px; align-items: end; gap: 5px; padding: 7px; border-radius: 8px; background: #f7faf9; }
+  .capability-product-art__chart i { flex: 1; height: 40%; border-radius: 4px 4px 1px 1px; background: var(--metro-cyan); }
+  .capability-product-art__chart i:nth-child(2n) { height: 75%; background: var(--metro-teal); }
+  .capability-product-art__side { position: absolute; top: 32px; right: 10px; width: 25%; height: 56px; border-radius: 8px; background: linear-gradient(160deg,#d9f9f1,#e8e2ff); }
+
+  .capability-web-art { position: relative; width: 72%; height: 118px; padding: 9px; border: 1px solid rgba(255,255,255,.8); border-radius: 13px; background: #fff; box-shadow: 0 14px 36px rgba(23,23,23,.1); transform: rotate(-2deg); }
+  .capability-web-art__chrome { display: flex; gap: 4px; height: 12px; margin-bottom: 7px; }
+  .capability-web-art__chrome i { width: 5px; height: 5px; border-radius: 50%; background: #ff8c76; }
+  .capability-web-art__chrome i:nth-child(2) { background: #ffd35f; }
+  .capability-web-art__chrome i:nth-child(3) { background: #67d8a1; }
+  .capability-web-art__hero { display: block; width: 100%; height: 44px; border-radius: 6px; background: linear-gradient(110deg,#b2f3e7,#b6a2f5 65%,#f2a6ca); }
+  .capability-web-art__copy { display: block; width: 55%; height: 5px; margin-top: 8px; border-radius: 9px; background: #333; box-shadow: 0 9px 0 #d9dddd, 72px 9px 0 #e7eaea; }
+  .capability-web-art__tiles { display: flex; gap: 5px; margin-top: 15px; }
+  .capability-web-art__tiles i { flex: 1; height: 15px; border-radius: 4px; background: #edf2f2; }
+
+  .capability-system-art { display: flex; width: 66%; flex-direction: column; gap: 8px; padding: 13px; border: 1px solid rgba(255,255,255,.8); border-radius: 14px; background: #fff; box-shadow: 0 14px 36px rgba(23,23,23,.1); transform: rotate(2deg); }
+  .capability-system-art__token { width: 30px; height: 16px; border-radius: 5px; background: var(--metro-orange); box-shadow: 38px 0 0 var(--metro-teal), 76px 0 0 var(--metro-purple); }
+  .capability-system-art__row { display: flex; gap: 6px; }
+  .capability-system-art__row i { height: 18px; flex: 1; border: 1px solid #e7ebea; border-radius: 5px; background: #f7f9f8; }
+  .capability-system-art__row i:first-child { background: #fdf2d1; }
+
+  .capability-motion-art { position: relative; width: 200px; height: 120px; }
+  .capability-motion-art i { position: absolute; width: 54px; aspect-ratio: 1; border: 1px solid rgba(255,255,255,.8); border-radius: 50%; background: radial-gradient(circle at 32% 28%,#fff,rgba(6,182,212,.55) 48%,rgba(168,85,247,.7)); box-shadow: 0 10px 24px rgba(168,85,247,.18); animation: capability-float 4s ease-in-out infinite; }
+  .capability-motion-art i:nth-child(1) { top: 22px; left: 15px; }
+  .capability-motion-art i:nth-child(2) { top: 46px; left: 72px; width: 38px; animation-delay: -1s; }
+  .capability-motion-art i:nth-child(3) { top: 10px; right: 20px; width: 68px; animation-delay: -2s; }
+  .capability-motion-art span { position: absolute; top: 59px; left: 40px; width: 130px; height: 1px; background: linear-gradient(90deg,transparent,var(--metro-magenta),transparent); transform: rotate(-15deg); }
+  @keyframes capability-float { 50% { transform: translateY(-8px); } }
+
+  .capability-commerce-art { display: flex; width: 68%; height: 116px; gap: 10px; padding: 10px; border: 1px solid rgba(255,255,255,.8); border-radius: 14px; background: #fff; box-shadow: 0 14px 36px rgba(23,23,23,.1); transform: rotate(-2deg); }
+  .capability-commerce-art__image { flex: 1.1; border-radius: 8px; background: linear-gradient(145deg,#ffe2d8,#f4a8ba 52%,#b4d7c6); }
+  .capability-commerce-art__details { display: flex; flex: 1; flex-direction: column; gap: 8px; padding-top: 4px; }
+  .capability-commerce-art__details i { height: 5px; border-radius: 4px; background: #e8ebea; }
+  .capability-commerce-art__details i:first-child { width: 75%; height: 8px; background: #343a38; }
+  .capability-commerce-art__details b { width: 80%; height: 18px; margin-top: auto; border-radius: 6px; background: var(--metro-lime); }
+
+  @media (max-width: 900px) { .capabilities-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+  @media (max-width: 560px) { .capabilities-grid { grid-template-columns: 1fr; } .capability-card__visual { min-height: 165px; } }
+  @media (prefers-reduced-motion: reduce) { .capability-card, .capability-card__link span, .capability-motion-art i { transition: none; animation: none; } }
+</style>

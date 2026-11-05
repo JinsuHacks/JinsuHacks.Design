@@ -1,0 +1,53 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  title: string;
+  description?: string;
+  category?: string;
+  href?: string;
+  color?: 'teal' | 'orange' | 'purple' | 'cyan';
+  shape?: 'default' | 'hexagon' | 'triangle' | 'diamond' | 'blob';
+  class?: string;
+}
+
+const {
+  src,
+  alt,
+  title,
+  description,
+  category,
+  href,
+  color = 'teal',
+  shape = 'default',
+  class: className = ''
+} = Astro.props;
+
+const classes = `image-overlay image-overlay--${color} ${shape !== 'default' ? `image-overlay--${shape}` : ''} ${className}`.trim();
+const isLink = !!href;
+const Tag = isLink ? 'a' : 'div';
+---
+
+<Tag href={isLink ? href : undefined} class={classes} {...(isLink ? { 'data-image-overlay': '' } : {})}>
+  <img
+    src={src}
+    alt={alt}
+    class="image-overlay__image"
+    loading="lazy"
+  />
+  <div class="image-overlay__content">
+    {category && (
+      <span style="font-size: var(--text-xs); font-weight: var(--font-semibold); text-transform: uppercase; letter-spacing: var(--tracking-wider); opacity: 0.8; display: block; margin-bottom: var(--space-1);">
+        {category}
+      </span>
+    )}
+    <h3 style="font-size: var(--text-xl); font-weight: var(--font-bold); margin-bottom: var(--space-1);">
+      {title}
+    </h3>
+    {description && (
+      <p style="font-size: var(--text-sm); opacity: 0.8; margin: 0;">
+        {description}
+      </p>
+    )}
+  </div>
+</Tag>

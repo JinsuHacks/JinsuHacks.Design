@@ -1,0 +1,27 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/layout/Header.astro';
+import Footer from '@/components/layout/Footer.astro';
+import Hero from '@/components/home/Hero.astro';
+import ServicesPreview from '@/components/home/ServicesPreview.astro';
+import CapabilitiesShowcase from '@/components/home/CapabilitiesShowcase.astro';
+import CTA from '@/components/home/CTA.astro';
+---
+
+<BaseLayout title="JinsuHacks.Design - Design Studio" description="Brand identity, digital product design, and web development—built around clear systems, thoughtful interaction, and careful execution.">
+  <slot name="header">
+    <Header />
+  </slot>
+
+  <Hero />
+
+  <ServicesPreview />
+
+  <CapabilitiesShowcase compact />
+
+  <CTA />
+
+  <slot name="footer">
+    <Footer />
+  </slot>
+</BaseLayout>
